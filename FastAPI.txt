@@ -1,0 +1,60 @@
+FastAPI  :
+
+Swagger is a framework and set of tools for documenting, designing, and testing RESTful APIs.It makes APIs easier to understand and consume by providing a standardized way to describe endpoints, parameters, request/response formats, and authentication.
+ 
+example:
+ main.py file 
+ required packages : pip install uvicorn (uvicorn is a light weight server that runs python applications)
+                   pip install fastapi uvicorn 
+  command to run : 
+                  uvicorn main:app --reload 
+                  uvicorn app.main:app --reload
+
+from fastapi import FastAPI
+from pydantic import BaseModel
+
+class User(BaseModel):
+     name:str
+     gender:str
+     age:int
+     id:int
+
+ app = FastAPI()
+
+ @app.get("/")
+ async def root():
+     return {"message": "Hello World"}
+
+@app.post("/post")
+ def post(user:User):
+   db.append(user)
+   return {"message":"User added successfully", "user": user}
+
+
+  pydantic --> used for data validation in Python
+  
+ Database Query : pip install sqlalchemy psycopg2-binary
+ 
+standard folder structure:  
+fastapi_project/
+│── venv/  --> Virtual Environment
+│── app/
+│   │── __init__.py
+│   │── main.py
+│   │── database.py
+│   │── models.py
+│   │── schemas.py
+│   │── crud.py
+   
+when we are using this standard folder structure we will use run command :uvicorn app.main:app --reload
+test.db --> holds all the data in a file.it is also termed as SQlite , it also maintains persistent data
+
+Authentication :
+    pip install python-jose passlib[bcrypt] fastapi[all]
+
+ schemas.py ---> it defines how data is validated and transferred in API requests/responses. Uses Pydantic models
+ models.py ----->defines how data is stored in database. Typically uses SQLAlchemy (or another ORM)
+  
+  401 --> Unauthorized 
+
+ 
