@@ -15,7 +15,7 @@ load_dotenv()
 # EVEN BETTER VERSION TO CRETATE DATABASE ENGINE
 DATABASE_URL = URL.create(
     drivername="postgresql+psycopg2",
-    username=os.getenv("DATABSE_USER"),
+    username=os.getenv("DATABASE_USER"),
     password=os.getenv("DATABASE_PASSWORD"),
     host=os.getenv("DATABASE_HOST"),
     port=os.getenv("DATABASE_PORT"),

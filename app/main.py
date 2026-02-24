@@ -66,13 +66,25 @@ def get_db():
 def read_users(db: Session = Depends(get_db)):
     return crud.get_users(db)
 
+# Signup user endpoint
 @app.post("/signup")
 def signup(user: schemas.UserCreate, db: Session = Depends(get_db)):
     hashed_pw = hash_password(user.password)
     db_user = models.User(
+       firstName=user.firstName,
+        lastName=user.lastName,
         email=user.email,
-        name=user.name,
+        phone=user.phone,
+        dateOfBirth=user.dateOfBirth,
         age=user.age,
+        gender=user.gender,
+        bloodGroup=user.bloodGroup,
+        address=user.address,
+        city=user.city,
+        state=user.state,
+        zipCode=user.zipCode,
+        emergencyContactName=user.emergencyContactName,
+        emergencyContactPhone=user.emergencyContactPhone,
         password=hashed_pw
     )
     db.add(db_user)

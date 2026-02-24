@@ -55,6 +55,10 @@ Authentication :
  schemas.py ---> it defines how data is validated and transferred in API requests/responses. Uses Pydantic models
  models.py ----->defines how data is stored in database. Typically uses SQLAlchemy (or another ORM)
   
-  401 --> Unauthorized 
+  401 --> Unauthorized
 
- 
+#Alembic is a lightweight database migration tool designed to work with SQLAlchemy in Python.
+   pip install alembic 
+   alembic init alembic  --> This creates a migration environment.
+   - Manages schema changes: It lets you evolve your database schema over time without manually writing ALTER TABLE statements.
+

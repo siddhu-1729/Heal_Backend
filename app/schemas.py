@@ -1,12 +1,26 @@
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel , EmailStr
+from datetime import date
 
 class UserCreate(BaseModel):
-    name: str
-    email: str
-    age: int 
-    password:str
+    firstName: str
+    lastName: str
+    email: EmailStr
+    phone: str
+    dateOfBirth: date
+    age: int
+    gender: str
+    bloodGroup: str
+    address: str
+    city: str
+    state: str
+    zipCode: str
+    emergencyContactName: str
+    emergencyContactPhone: str
+    password: str
+    # confirmPassword: str
+
 
 class UserResponse(UserCreate):
     id:int
