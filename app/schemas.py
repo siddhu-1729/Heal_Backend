@@ -24,9 +24,14 @@ class UserCreate(BaseModel):
 
 class UserResponse(UserCreate):
     id:int
-    name:str
+    firstName:str
+    lastName:str
     email:str
     age:Optional[int]=None
+    phone:str
+    bloodGroup:str
+    gender:str
+
     
     class Config:
         from_attributes = True
