@@ -31,6 +31,10 @@ class UserResponse(UserCreate):
     phone:str
     bloodGroup:str
     gender:str
+    address:str
+    city:str
+    emergencyContactName:str
+    emergencyContactPhone:str
 
     
     class Config:

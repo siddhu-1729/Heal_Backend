@@ -110,7 +110,10 @@ def login(
     return {"access_token": token, "token_type": "bearer"}
 
 
-@app.get("/profile")
-def profile(current_user: str = Depends(crud.get_current_user)):
-    return {"email": current_user}
+@app.get("/profile", response_model=schemas.UserResponse)
+def profile(current_user: str = Depends(crud.get_current_user), db: Session = Depends(get_db)):
+    user = db.query(models.User).filter(models.User.email == current_user).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    return user
 

@@ -22,3 +22,10 @@ class User(Base):
     password = Column(String)
     # confirmPassword = Column(String)
 
+class OUsers(Base):
+    __tablename__ = "o_users"
+
+    id = Column(Integer, primary_key=True, index=True)
+    email = Column(String, unique=True, index=True)
+    password = Column(String)
+
