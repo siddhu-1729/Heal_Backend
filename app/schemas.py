@@ -1,6 +1,6 @@
-from typing import Optional
+from typing import List, Optional
 
-from pydantic import BaseModel , EmailStr
+from pydantic import BaseModel, EmailStr, Field
 from datetime import date
 
 class UserCreate(BaseModel):
@@ -18,6 +18,7 @@ class UserCreate(BaseModel):
     zipCode: str
     emergencyContactName: str
     emergencyContactPhone: str
+    medical_conditions: List[str] = Field(default_factory=list)
     password: str
     # confirmPassword: str
 
@@ -70,3 +71,10 @@ class TokenResponse(BaseModel):
     access_token: str
     token_type: str
     user_type: str  # 'oauth' or 'standard'
+
+
+# health record schema
+class HealthRecordCreate(BaseModel):
+    record_type: str  # e.g., 'blood_pressure', 'heart_rate', etc.
+    value: str  # Store as string for flexibility (can be JSON if needed)
+    

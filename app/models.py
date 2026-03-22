@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Date, DateTime
+from sqlalchemy import Column, Integer, String, Date, DateTime, JSON
 from datetime import datetime
 from .database import Base
 
@@ -20,6 +20,9 @@ class User(Base):
     zipCode = Column(String)
     emergencyContactName = Column(String)
     emergencyContactPhone = Column(String)
+    medical_conditions = Column(JSON, nullable=False, default=list)
+    fitness_score = Column(Integer, nullable=True)
+    fitness_level = Column(String, nullable=True)
     password = Column(String)
     created_at = Column(DateTime, default=datetime.utcnow)
     # confirmPassword = Column(String)
@@ -47,3 +50,12 @@ class OAuthUser(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
     last_login = Column(DateTime, default=datetime.utcnow)
 
+
+class healthRecord(Base):
+    __tablename__ = "health_records"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, index=True)  # Foreign key to User.id
+    record_type = Column(String)  # e.g., 'blood_pressure', 'heart_rate', etc.
+    value = Column(String)  # Store as string for flexibility (can be JSON if needed)
+    timestamp = Column(DateTime, default=datetime.utcnow)
